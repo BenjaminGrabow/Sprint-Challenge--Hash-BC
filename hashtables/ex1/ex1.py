@@ -7,17 +7,22 @@ from hashtables import (HashTable,
 
 
 def get_indices_of_item_weights(weights, length, limit):
-    ht = HashTable(16)
+    ht = HashTable(length)
 
-    """
-    YOUR CODE HERE
-    """
-
+    for index, item in enumerate(weights):
+      check_if_match = hash_table_retrieve(ht, limit-item)
+      if check_if_match is not None:
+        if index > check_if_match:
+          return (index, check_if_match)
+        return (check_if_match, index)
+      else:
+        hash_table_insert(ht, item, index)
+    
     return None
 
 
-def print_answer(answer):
-    if answer is not None:
-        print(str(answer[0] + " " + answer[1]))
-    else:
-        print("None")
+# def print_answer(answer):
+#     if answer is not None:
+#         print(str(answer[0] + " " + answer[1]))
+#     else:
+#         print("None")
